@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    background-color: #eee;
+    font-family: Arial;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+form {
+    background-color: #fff;
+    width: 300px;
+    height: 400px;
+    position: relative;
+    padding: 0;
+    margin-top: 10%;
+    left: 50%;
+    margin-left: -150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.second-form {
+    height: 450px;
+    margin-top: 7%;
+}
+
+form span {
+    padding: 0 10px;
+}
+
+form p {
+    font-size: 18px;
+}
+
+.profile-img {
+    border-radius: 50%;
+}
+
+.color-gray {
+    color: #aaa;
+}
+
+.form-input {
+    padding: 5px;
+    margin: 10px 0;
+    width: 200px;
+}
+
+.mb-3 {
+    margin-bottom: 0.7em;
+}
+
+form button {
+    width: 200px;
+    height: 30px;
+    background-color: #5877FD;
+    color: white;
+    font-family: Arial;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.advertise {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(rgba(247,157,12,97), rgba(247,17,175,97));
+    display: flex;
+    z-index: 1;
+}
+
+.advertise-left {
+    margin-left: 10px;
+    padding: 0;
+}
+
+.advertise-left p {
+    margin: 5px 0;
+    padding: 0;
+}
+
+.advertise-right {
+    margin-right: 10px;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.get-app-button {
+    border: 1px solid #fff;
+    border-radius: 8px;
+    padding: 5px;
+    transition: all 500ms;
+}
+
+.get-app-button:hover {
+    background-color: white;
+    color: rgba(247,17,175,97);
+}
+
+.poweredby {
+    position: absolute;
+    left: 50%;
+    width: 125px;
+    bottom: 20px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: -62.5px;
+    z-index: -1;
+}
+
+.poweredby p {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
+    color: #bbb;
+}
+
+.poweredby span {
+    color: #000;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+@media only screen and (max-width: 768px) {
+    
+    .first-form {
+        margin-top: 20%;
+    }
+    
+    .second-form {
+        margin-top: 20%;
+    }
+    
+}
