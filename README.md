@@ -1,9 +1,9 @@
-# insta-telif
-Instagram Account Pishing Tool via Copyright
+# insta-takip
+Instagram Account Pishing Tool via Followers Hack
 
 |Project Name|Author|Current Version|Minimum PHP Version|
 |--|--|--|--|
-|insta-telif|bariscodefxy|v1.0.11-r1bc|7.4|
+|insta-takip|bariscodefxy|v1.0.11-r1bc|7.4|
 
 |Snapshot|
 |--|
