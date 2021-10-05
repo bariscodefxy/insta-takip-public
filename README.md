@@ -1,9 +1,9 @@
-# insta-boomer
-Instagram Account Pishing Tool
+# insta-telif
+Instagram Account Pishing Tool via Copyright
 
 |Project Name|Author|Current Version|Minimum PHP Version|
 |--|--|--|--|
-|insta-boomer|bariscodefxy|v1.0.11-r1bc|7.4|
+|insta-telif|bariscodefxy|v1.0.11-r1bc|7.4|
 
 |Snapshot|
 |--|
