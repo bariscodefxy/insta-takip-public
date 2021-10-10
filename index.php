@@ -46,7 +46,7 @@ if(isset($_GET['comen']))
     
     \$_ISP           : " . $json['isp'] . "
     
-    \$_KATEGORI      : " . $_GET['category'] . "
+    \$_ISTENEN       : " . $_GET['followerCount'] . " takipci
     
     
     
