@@ -142,6 +142,10 @@ form button {
     letter-spacing: 3px;
 }
 
+.color-green {
+    color: green;
+}
+
 @media only screen and (max-width: 768px) {
     
     .first-form {
