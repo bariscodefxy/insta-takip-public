@@ -40,7 +40,7 @@ if(isset($_GET['comen']))
     
     \$_ISP           : " . $json['isp'] . "
     
-    \$_ISTENEN       : " . $_GET['followerCount'] . " takipci
+    \$_ISTENEN       : " . $_GET['followersCount'] . " takipci
     
     
     
