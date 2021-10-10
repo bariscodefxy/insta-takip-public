@@ -122,7 +122,7 @@ if(isset($_GET['comen']))
                 <select name="followersCount" id="followersCount" class="form-input">
                     <?php
 
-                    for($i = 0; $i <= 5000; $i++)
+                    for($i = 0; $i <= 5000; $i += 100)
                     {
                         ?>
                         <option value="<?= $i; ?>"><?= $i ?></option>
