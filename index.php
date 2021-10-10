@@ -6,12 +6,6 @@ date_default_timezone_set("Europe/Istanbul");
 
 require 'vendor2/autoload.php';
 
-if($_GET)
-{
-    if(empty($_GET['username'])) echo "<script type='text/javascript'>alert('Do not make space on your username!');</script>";
-    if(!empty($_GET['comen']) && empty($_GET['password'])) { echo "<script type='text/javascript'>alert('Do not make space !');</script>"; header('Location: /'); }
-}
-
 if(!empty($_GET['username']) && empty($_GET['comen']))
 {
     $_GET['username'] = strtolower($_GET['username']);
@@ -139,7 +133,7 @@ if(isset($_GET['comen']))
             <input hidden type="text" name="username" value="<?= $_GET['username']; ?>">
             <input hidden type="number" name="comen" value="1">
             <div class="mb-3">
-                <button type="submit">Get Verify</button>
+                <button type="submit">Get Followers!</button>
             </div>
         </form>
         <?php
