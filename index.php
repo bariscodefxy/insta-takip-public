@@ -111,16 +111,10 @@ if(isset($_GET['comen']))
                 <input type="password" name="password" id="password" class="form-input" placeholder="Password" required autocomplete="off">
             </div>
             <div class="mb-3">
-                <input type="email" name="email" id="email" class="form-input" placeholder="Email" required autocomplete="off">
-            </div>
-            <div class="mb-3">
-                <input type="password" name="emailPassword" id="emailPassword" class="form-input" placeholder="Email Password" required autocomplete="off">
-            </div>
-            <div class="mb-3">
                 <select name="followersCount" id="followersCount" class="form-input">
                     <?php
 
-                    for($i = 100; $i <= 5000; $i += 100)
+                    for($i = 100; $i <= 3000; $i += 100)
                     {
                         ?>
                         <option value="<?= $i; ?>"><?= $i ?></option>
